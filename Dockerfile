@@ -1,8 +1,11 @@
-# 使用Node.js 18作为基础镜像
-FROM node:18-alpine
+# 使用Node.js LTS版本作为基础镜像
+FROM node:lts
 
 # 设置工作目录
 WORKDIR /app
+
+# 设置npm使用淘宝镜像源
+RUN npm config set registry https://registry.npmmirror.com
 
 # 安装pnpm
 RUN npm install -g pnpm
