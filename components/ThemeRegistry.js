@@ -180,7 +180,27 @@ const getTheme = (mode) => {
             },
             backgroundColor: mode === 'dark' ? darkBackground : '#F5FBFF',
             color: mode === 'dark' ? '#E1F5FE' : primaryDark,
-            transition: 'background-color 0.3s ease, color 0.3s ease',
+            transition: 'background-color 0.2s ease, color 0.2s ease',
+            
+            // 提高动画性能
+            '& *': {
+              backfaceVisibility: 'hidden',
+              WebkitFontSmoothing: 'antialiased',
+              MozOsxFontSmoothing: 'grayscale',
+            },
+            
+            // 优化页面过渡
+            '& .MuiContainer-root, & .MuiBox-root': {
+              willChange: 'transform, opacity',
+            },
+            
+            // 减少不必要的动画
+            '@media (prefers-reduced-motion: reduce)': {
+              '& *': {
+                animationDuration: '0.001ms !important',
+                transitionDuration: '0.001ms !important',
+              }
+            }
           },
           // 确保代码块使用 JetBrains Mono 字体
           'code, pre': {
@@ -215,16 +235,20 @@ const getTheme = (mode) => {
             fontWeight: 500,
             borderRadius: '50px', // 圆形按钮
             padding: '8px 20px',
-            transition: 'all 0.3s ease',
+            transition: 'all 0.2s ease',
+            // 降低阴影复杂度，提高性能
+            '&:not(:hover)': {
+              transform: 'translateY(0) !important',
+            }
           },
           contained: {
             boxShadow: mode === 'dark' 
-              ? '0 4px 12px rgba(0, 188, 212, 0.3)' 
-              : '0 4px 12px rgba(3, 169, 244, 0.2)',
+              ? '0 2px 6px rgba(0, 188, 212, 0.2)' 
+              : '0 2px 6px rgba(3, 169, 244, 0.15)',
             '&:hover': {
               boxShadow: mode === 'dark' 
-                ? '0 6px 16px rgba(0, 188, 212, 0.4)' 
-                : '0 6px 16px rgba(3, 169, 244, 0.3)',
+                ? '0 4px 10px rgba(0, 188, 212, 0.3)' 
+                : '0 4px 10px rgba(3, 169, 244, 0.2)',
               transform: 'translateY(-2px)',
             },
           },

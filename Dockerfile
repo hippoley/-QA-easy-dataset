@@ -19,11 +19,8 @@ RUN pnpm install
 # 复制所有文件
 COPY . .
 
-# 构建应用
-RUN pnpm build
-
 # 暴露端口
-EXPOSE 1717
+EXPOSE 1717 3000
 
-# 启动应用
-CMD ["pnpm", "start"]
+# 跳过构建直接启动开发服务器
+CMD ["pnpm", "dev"]

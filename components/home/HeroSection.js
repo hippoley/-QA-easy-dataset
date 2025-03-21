@@ -30,14 +30,16 @@ export default function HeroSection({ onCreateProject }) {
                 component={motion.div}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 0.15, y: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
                 sx={{
                     position: 'absolute',
                     top: '10%',
                     right: '15%',
                     zIndex: 0,
                     color: theme.palette.mode === 'dark' ? '#0288D1' : '#0277BD',
-                    fontSize: 100
+                    fontSize: 100,
+                    filter: 'blur(1px)',
+                    willChange: 'transform'
                 }}
             >
                 <HomeIcon sx={{ fontSize: 'inherit' }} />
@@ -47,110 +49,89 @@ export default function HeroSection({ onCreateProject }) {
                 component={motion.div}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 0.15, y: 0 }}
-                transition={{ duration: 1, delay: 1 }}
+                transition={{ duration: 0.8, delay: 0.7 }}
                 sx={{
                     position: 'absolute',
                     bottom: '15%',
                     left: '10%',
                     zIndex: 0,
-                    color: theme.palette.mode === 'dark' ? '#4DD0E1' : '#039BE5',
-                    fontSize: 80
+                    color: theme.palette.mode === 'dark' ? '#00B8D4' : '#0097A7',
+                    fontSize: 80,
+                    filter: 'blur(1px)',
+                    willChange: 'transform'
                 }}
             >
                 <HubIcon sx={{ fontSize: 'inherit' }} />
             </Box>
 
-            <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-                <Grid container spacing={4} alignItems="center">
+            <Container maxWidth="lg">
+                <Grid container spacing={3} alignItems="center" justifyContent="space-between">
                     <Grid item xs={12} md={7}>
-                        <Box
-                            sx={{
-                                textAlign: { xs: 'center', md: 'left' },
-                                py: { xs: 5, md: 8 }
-                            }}
-                            component={motion.div}
+                        <Box 
+                            component={motion.div} 
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8 }}
+                            transition={{ duration: 0.5 }}
+                            sx={{ zIndex: 1, position: 'relative' }}
                         >
                             <Typography
-                                variant={isMobile ? "h3" : "h1"}
-                                component="h1"
-                                fontWeight="bold"
+                                variant="h2"
+                                gutterBottom
                                 sx={{
-                                    ...styles.gradientTitle(theme),
-                                    letterSpacing: '-1px',
-                                    mb: 3,
-                                    textShadow: theme.palette.mode === 'dark' ? '0 0 30px rgba(0, 136, 204, 0.3)' : 'none'
+                                    ...styles.gradientTitle,
+                                    fontWeight: 800,
+                                    mb: 2,
+                                    fontSize: isMobile ? '2.5rem' : '3.5rem',
+                                    letterSpacing: '-0.5px',
+                                    lineHeight: 1.2
                                 }}
                             >
-                                {t('home.title')}
+                                RIZLL 智能家居<br />数据管理平台
                             </Typography>
 
-                            <Typography
-                                variant={isMobile ? "body1" : "h5"}
-                                component={motion.p}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.3, duration: 0.8 }}
-                                color="text.secondary"
-                                paragraph
-                                sx={{
-                                    maxWidth: '650px',
-                                    mx: { xs: 'auto', md: 0 },
-                                    lineHeight: 1.8,
-                                    opacity: 0.9,
-                                    fontSize: { xs: '1rem', md: '1.2rem' },
-                                    fontWeight: 400,
-                                    mb: 4
+                            <Typography 
+                                variant="h6" 
+                                sx={{ 
+                                    opacity: 0.9, 
+                                    mb: 4, 
+                                    maxWidth: '600px',
+                                    lineHeight: 1.6
                                 }}
                             >
-                                {t('home.subtitle')}
+                                连接、管理与分析您的智能家居数据，让您的家更智能、更高效、更舒适
                             </Typography>
 
-                            <Box
-                                component={motion.div}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5, duration: 0.5 }}
-                                sx={{
-                                    mt: 6,
-                                    display: 'flex',
-                                    flexDirection: { xs: 'column', sm: 'row' },
-                                    justifyContent: { xs: 'center', md: 'flex-start' },
-                                    gap: { xs: 2, sm: 3 }
-                                }}
-                            >
-                                <Button
-                                    variant="contained"
+                            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                                <Button 
+                                    variant="contained" 
                                     size="large"
+                                    sx={styles.createButton}
                                     onClick={onCreateProject}
                                     startIcon={<AddCircleOutlineIcon />}
-                                    sx={styles.createButton(theme)}
+                                    component={motion.button}
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    transition={{ duration: 0.2 }}
                                 >
-                                    {t('home.createProject')}
+                                    创建新项目
                                 </Button>
-                                <Button
-                                    variant="contained"
+                                <Button 
+                                    variant="outlined" 
                                     size="large"
-                                    onClick={() => {
-                                        window.location.href = '/dataset-square'
-                                    }}
                                     startIcon={<SearchIcon />}
                                     sx={{
-                                        ...styles.createButton(theme),
-                                        background: theme.palette.mode === 'dark' 
-                                            ? 'rgba(0, 149, 183, 0.15)' 
-                                            : 'rgba(232, 245, 253, 0.95)',
-                                        color: theme.palette.mode === 'dark' ? '#4DD0E1' : '#0277BD',
+                                        borderRadius: '50px',
+                                        borderWidth: '2px',
                                         '&:hover': {
-                                            background: theme.palette.mode === 'dark' 
-                                                ? 'rgba(0, 149, 183, 0.25)' 
-                                                : 'rgba(232, 245, 253, 1)',
+                                            borderWidth: '2px'
                                         }
                                     }}
+                                    component={motion.button}
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    transition={{ duration: 0.2 }}
                                 >
-                                    {t('home.searchDataset')}
+                                    浏览数据集
                                 </Button>
                             </Box>
                         </Box>

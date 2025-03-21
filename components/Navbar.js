@@ -92,45 +92,37 @@ export default function Navbar({ projects = [], currentProject, models = [] }) {
       <Toolbar sx={{ minHeight: '64px' }} style={{ zIndex: 99000 }}>
         {/* 左侧Logo和项目选择 */}
         <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 0 }}>
-          <Box sx={{
-            display: 'flex',
-            alignItems: 'center',
-            mr: 2,
-            '&:hover': { opacity: 0.9 }
-          }}
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              mr: 2,
+              '&:hover': { opacity: 0.9 }
+            }}
             style={{ cursor: 'pointer', '&:hover': { opacity: 0.9 } }}
             onClick={() => {
               window.location.href = '/';
             }}
           >
-            <Box
-              component="img"
-              src="/imgs/logo.svg"
-              alt="Easy Dataset Logo"
-              sx={{
-                width: 28,
-                height: 28,
-                mr: 1.5,
-                filter: theme.palette.mode === 'dark' ? 'drop-shadow(0 0 4px rgba(77, 208, 225, 0.4))' : 'none'
-              }}
-            />
             <Typography
-              variant="h6"
+              variant="h5"
               component="div"
               sx={{
-                fontWeight: 600,
-                letterSpacing: '-0.5px',
+                fontWeight: 700,
+                letterSpacing: '1px',
                 background: theme.palette.mode === 'dark' 
                   ? 'linear-gradient(90deg, #4DD0E1 0%, #00B8D4 100%)' 
                   : 'linear-gradient(90deg, #0277BD 0%, #0288D1 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                textFillColor: 'transparent'
+                textFillColor: 'transparent',
+                textShadow: theme.palette.mode === 'dark' 
+                  ? '0 0 10px rgba(77, 208, 225, 0.3)' 
+                  : '0 0 10px rgba(2, 136, 209, 0.2)'
               }}
-              style={{ fontSize: '1.1rem' }}
             >
-              Easy DataSet
+              RIZLL
             </Typography>
           </Box>
 

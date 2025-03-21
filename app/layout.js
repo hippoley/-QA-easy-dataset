@@ -3,8 +3,8 @@ import ThemeRegistry from '@/components/ThemeRegistry';
 import I18nProvider from '@/components/I18nProvider';
 
 export const metadata = {
-  title: 'Easy Dataset',
-  description: '一个强大的 LLM 数据集生成工具',
+  title: 'RIZLL',
+  description: '智能家居数据管理平台',
   icons: {
     icon: '/imgs/logo.ico',  // 更新为正确的文件名
   },
