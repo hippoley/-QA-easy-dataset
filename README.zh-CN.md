@@ -132,6 +132,8 @@ Easy Dataset 是一个专为创建大型语言模型（LLM）微调数据集而�
    ```bash
    docker run -d -p 1717:1717 -v {YOUR_LOCAL_DB_PATH}:/app/local-db --name easy-dataset easy-dataset
    ```  
+   docker run -d -p 1717:1717 -v C:/Users/Hippo/easy-dataset-data:/app/local-db --name easy-dataset easy-dataset
+   
    **注意：** 请将 `{YOUR_LOCAL_DB_PATH}` 替换为你希望存储本地数据库的实际路径。  
 
 4. 打开浏览器，访问 `http://localhost:1717`

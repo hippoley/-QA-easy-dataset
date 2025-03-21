@@ -11,3 +11,97 @@
   font-weight: bold;
   color: #666;
 }
+
+/* 智能家居主题基础样式 */
+:root {
+  /* 主题色彩变量 */
+  --primary-light: #29B6F6;
+  --primary-main: #0288D1;
+  --primary-dark: #01579B;
+  --secondary-light: #4DD0E1;
+  --secondary-main: #00B8D4;
+  --secondary-dark: #0097A7;
+  --background-dark: #121A21;
+  --background-light: #F5FBFF;
+  --text-primary-dark: #E1F5FE;
+  --text-secondary-dark: #B3E5FC;
+  --text-primary-light: #01579B;
+  --text-secondary-light: #0277BD;
+}
+
+/* 添加平滑滚动和基础字体设置 */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 智能家居通用卡片样式 */
+.smart-card {
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.smart-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* 智能家居风格按钮 */
+.smart-button {
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+/* 渐变文本效果 */
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, var(--primary-dark), var(--primary-main), var(--secondary-main));
+}
+
+/* 智能设备图标悬浮效果 */
+.smart-icon {
+  transition: all 0.3s ease;
+}
+
+.smart-icon:hover {
+  transform: translateY(-5px);
+  filter: drop-shadow(0 5px 15px rgba(0, 149, 255, 0.5));
+}
+
+/* 数据流动画 */
+@keyframes dataFlow {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+.data-flow {
+  position: relative;
+  overflow: hidden;
+}
+
+.data-flow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(41, 182, 246, 0.2), transparent);
+  animation: dataFlow 3s infinite;
+}
+
+/* 智能家居主题切换过渡 */
+.theme-transition * {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+}

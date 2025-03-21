@@ -75,15 +75,19 @@ export default function Navbar({ projects = [], currentProject, models = [] }) {
     <AppBar
       position="static"
       elevation={0}
-      color={theme.palette.mode === 'dark' ? 'transparent' : 'primary'}
+      color="transparent"
       sx={{
         borderBottom: `1px solid ${theme.palette.divider}`,
         bgcolor: theme.palette.mode === 'dark'
-          ? 'background.paper'
-          : 'primary.main',
-
+          ? 'rgba(18, 26, 33, 0.8)'
+          : 'rgba(255, 255, 255, 0.8)',
+        backdropFilter: 'blur(10px)',
+        borderRadius: 0,
+        boxShadow: theme.palette.mode === 'dark'
+          ? '0 4px 20px rgba(0, 0, 0, 0.2)'
+          : '0 4px 20px rgba(0, 136, 204, 0.1)',
       }}
-      style={{ borderRadius: 0, zIndex: 99000 }}
+      style={{ zIndex: 99000 }}
     >
       <Toolbar sx={{ minHeight: '64px' }} style={{ zIndex: 99000 }}>
         {/* 左侧Logo和项目选择 */}
@@ -106,7 +110,8 @@ export default function Navbar({ projects = [], currentProject, models = [] }) {
               sx={{
                 width: 28,
                 height: 28,
-                mr: 1.5
+                mr: 1.5,
+                filter: theme.palette.mode === 'dark' ? 'drop-shadow(0 0 4px rgba(77, 208, 225, 0.4))' : 'none'
               }}
             />
             <Typography
@@ -115,10 +120,15 @@ export default function Navbar({ projects = [], currentProject, models = [] }) {
               sx={{
                 fontWeight: 600,
                 letterSpacing: '-0.5px',
+                background: theme.palette.mode === 'dark' 
+                  ? 'linear-gradient(90deg, #4DD0E1 0%, #00B8D4 100%)' 
+                  : 'linear-gradient(90deg, #0277BD 0%, #0288D1 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                textFillColor: 'transparent'
               }}
               style={{ fontSize: '1.1rem' }}
-              className={theme.palette.mode === 'dark' ? 'gradient-text' : ''}
-              color={theme.palette.mode === 'dark' ? 'inherit' : 'white'}
             >
               Easy DataSet
             </Typography>
@@ -131,26 +141,33 @@ export default function Navbar({ projects = [], currentProject, models = [] }) {
               displayEmpty
               variant="outlined"
               sx={{
-                bgcolor: theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.15)',
-                borderRadius: '8px',
-                color: theme.palette.mode === 'dark' ? 'inherit' : 'white',
+                bgcolor: theme.palette.mode === 'dark' ? 'rgba(0, 136, 204, 0.1)' : 'rgba(232, 245, 253, 0.5)',
+                borderRadius: '50px',
                 '& .MuiSelect-icon': {
-                  color: theme.palette.mode === 'dark' ? 'inherit' : 'white'
+                  color: theme.palette.mode === 'dark' ? '#4DD0E1' : '#0277BD'
                 },
                 '& .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'transparent'
+                  borderColor: theme.palette.mode === 'dark' ? 'rgba(77, 208, 225, 0.3)' : 'rgba(2, 119, 189, 0.2)'
                 },
                 '&:hover .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'transparent'
+                  borderColor: theme.palette.mode === 'dark' ? 'rgba(77, 208, 225, 0.5)' : 'rgba(2, 119, 189, 0.3)'
                 },
                 '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: 'primary.main'
+                  borderColor: theme.palette.mode === 'dark' ? '#4DD0E1' : '#0277BD'
                 }
               }}
               MenuProps={{
                 PaperProps: {
                   elevation: 2,
-                  sx: { mt: 1, borderRadius: 2 }
+                  sx: { 
+                    mt: 1, 
+                    borderRadius: 2,
+                    background: theme.palette.mode === 'dark' ? 'rgba(18, 26, 33, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+                    backdropFilter: 'blur(10px)',
+                    boxShadow: theme.palette.mode === 'dark'
+                      ? '0 4px 20px rgba(0, 0, 0, 0.2)'
+                      : '0 4px 20px rgba(0, 136, 204, 0.1)',
+                  }
                 }
               }}
             >
@@ -167,32 +184,38 @@ export default function Navbar({ projects = [], currentProject, models = [] }) {
 
         </Box>
 
-        {/* 中间的功能模块导航 */}
+        {/* 中间的功能模块导航 - 更新为智能家居风格 */}
         {isProjectDetail && (
           <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }} style={{ position: 'absolute', left: '400px' }}>
             <Tabs
               value={pathname}
               textColor="inherit"
-              indicatorColor="secondary"
+              variant="scrollable"
+              scrollButtons="auto"
+              allowScrollButtonsMobile
               sx={{
                 '& .MuiTab-root': {
                   minWidth: 100,
                   fontSize: '0.9rem',
                   transition: 'all 0.2s',
-                  color: theme.palette.mode === 'dark' ? 'inherit' : 'white',
-                  opacity: theme.palette.mode === 'dark' ? 0.7 : 0.8,
+                  color: theme.palette.mode === 'dark' ? '#B3E5FC' : '#0277BD',
+                  opacity: 0.7,
+                  borderRadius: '50px',
+                  mx: 0.5,
                   '&:hover': {
-                    color: theme.palette.mode === 'dark' ? theme.palette.secondary.main : 'white',
-                    opacity: 1
+                    color: theme.palette.mode === 'dark' ? '#4DD0E1' : '#0288D1',
+                    opacity: 1,
+                    bgcolor: theme.palette.mode === 'dark' ? 'rgba(77, 208, 225, 0.1)' : 'rgba(232, 245, 253, 0.5)',
                   }
                 },
                 '& .Mui-selected': {
-                  color: theme.palette.mode === 'dark' ? theme.palette.secondary.main : 'white',
+                  color: theme.palette.mode === 'dark' ? '#4DD0E1' : '#0288D1',
                   opacity: 1,
-                  fontWeight: 600
+                  fontWeight: 600,
+                  bgcolor: theme.palette.mode === 'dark' ? 'rgba(77, 208, 225, 0.15)' : 'rgba(232, 245, 253, 0.8)',
                 },
                 '& .MuiTabs-indicator': {
-                  backgroundColor: theme.palette.mode === 'dark' ? theme.palette.secondary.main : 'white'
+                  backgroundColor: 'transparent'
                 }
               }}
             >
